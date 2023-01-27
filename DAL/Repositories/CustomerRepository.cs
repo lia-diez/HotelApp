@@ -31,6 +31,11 @@ public class CustomerRepository : IRepository<Customer>
     {
         _dbContext.Customers.Add(item);
     }
+    
+    public IEnumerable<Customer> Where(Func<Customer, bool> predicate)
+    {
+        return _dbContext.Customers.Where(predicate);
+    }
 
     public void Update(Customer item)
     {

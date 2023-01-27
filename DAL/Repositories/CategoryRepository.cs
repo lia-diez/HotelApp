@@ -31,6 +31,11 @@ public class CategoryRepository : IRepository<Category>
     {
         _dbContext.Categories.Add(item);
     }
+    
+    public IEnumerable<Category> Where(Func<Category, bool> predicate)
+    {
+        return _dbContext.Categories.Where(predicate);
+    }
 
     public void Update(Category item)
     {

@@ -27,5 +27,13 @@ public class FindFreeRoomsByDate
         
         return _mapper.Map<IEnumerable<Room>>(rooms);
     }
-    
+
+    private bool Intersects((DateTime left, DateTime right) check, (DateTime left, DateTime right) other)
+    {
+        return IsBetween(check.left, other) || IsBetween(check.right, other) || 
+               IsBetween(other.left, check) || IsBetween(other.right, check);
+    }
+
+    private bool IsBetween(DateTime check, (DateTime left, DateTime right) other) =>
+        check >= other.left && check <= other.right;
 }

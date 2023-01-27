@@ -31,6 +31,11 @@ public class RoomRepository : IRepository<Room>
     {
         _dbContext.Rooms.Add(item);
     }
+    
+    public IEnumerable<Room> Where(Func<Room, bool> predicate)
+    {
+        return _dbContext.Rooms.Where(predicate);
+    }
 
     public void Update(Room item)
     {
