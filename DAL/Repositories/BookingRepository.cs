@@ -18,6 +18,11 @@ public class BookingRepository : IRepository<Booking>
         return _dbContext.Bookings;
     }
 
+    public IEnumerable<Booking> Where(Func<Booking, bool> predicate)
+    {
+        return _dbContext.Bookings.Where(predicate);
+    }
+
     public Booking GetItem(int id)
     {
         var booking = _dbContext.Bookings.FirstOrDefault(b => b.Id == id);
